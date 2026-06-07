@@ -7,36 +7,36 @@ public class Book{
     private double price;
     private int stockQuantity;
 
-    public Book(int bId, String title, String author, double p, int q){
-        this.bookId = bId;
+    public Book(int bookId, String title, String author, double price, int quantity){
+        this.bookId = bookId;
         this.title = title;
         this.author = author;
-        this.price = p;
-        this.stockQuantity = q;
+        this.price = price;
+        this.stockQuantity = quantity;
     }
 
-    public void increaseStock(int q){
-        if(q < 0){
+    public void increaseStock(int quantity){
+        if(quantity < 0){
             System.out.println("Can not increase by negative value.");
             return;
         }
-        this.stockQuantity += q;
+        this.stockQuantity += quantity;
     }
 
-    public void decreaseStock(int q){
-        if(q > this.stockQuantity || q < 0){
+    public void decreaseStock(int quantity){
+        if(quantity > this.stockQuantity || quantity < 0){
             System.out.println("Can not decrease by this amount.");
             return;
         }
-        this.stockQuantity -= q;
+        this.stockQuantity -= quantity;
     }
 
-    public void updatePrice(double p){
-        if(p < 0){
+    public void updatePrice(double price){
+        if(price < 0){
             System.out.println("Can not set to negative value.");
             return;
         }
-        this.price = p;
+        this.price = price;
     }
 
     @Override
