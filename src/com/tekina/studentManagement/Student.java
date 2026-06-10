@@ -64,6 +64,10 @@ public class Student {
     public void promoteStudent(){
         System.out.println("Student promoted to next semester");
     }
+
+    public int getStudentId(){
+        return this.studentId;
+    }
     @Override
     public String toString(){
         return ("Student Id" + this.studentId + "| Student Name : " + this.name + "| Student Age : " + this.age + "| Student Department : " + this.department
