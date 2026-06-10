@@ -4,9 +4,33 @@ import com.tekina.studentManagement.Student;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Classroom {
+    /****************************************
+     * Generated Fields:
+     * - classroomId
+     *
+     * Mandatory Fields:
+     * - teacherName
+     * - capacity
+     *
+     * Internally Managed Fields:
+     * - students
+     *
+     * Optional Fields:
+     * - className
+     *
+     * Mutable Fields:
+     * - teacherName
+     * - students
+     *
+     * Immutable Fields:
+     * - classroomId
+     * - capacity
+     *
+     * Relationships:
+     * - Classroom HAS-A List<Student> (Aggregation)
+     ****************************************/
     private static int id = 1;
     private final int classroomId;
     private String teacherName;
