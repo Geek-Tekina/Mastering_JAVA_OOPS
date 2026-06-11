@@ -18,4 +18,23 @@ A repository documenting my journey of learning Java, OOP, Design Principles, De
 * Design Patterns
 * Low-Level Design (LLD)
 
+## Template for a class before starting LLD coding
+    /*
+     * Generated Fields:
+     *
+     * Mandatory Fields:
+     *
+     * Optional Fields:
+     *
+     * Internally Managed Fields:
+     *
+     * Mutable Fields:
+     *
+     * Immutable Fields:
+     *
+     * Relationship Type:
+     *
+     * Why?
+     */
+
 
