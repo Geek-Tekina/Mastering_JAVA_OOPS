@@ -1,0 +1,8 @@
+package com.tekina.payment;
+
+public interface PaymentMethod {
+
+    boolean processPayment(double amount);
+
+    String getPaymentDetails();
+}
