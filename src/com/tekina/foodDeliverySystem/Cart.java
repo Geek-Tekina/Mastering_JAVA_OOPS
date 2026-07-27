@@ -21,38 +21,186 @@ public class Cart {
         2. Modify the quantity of a particular item inside Items
         3. Delete cart item (also consider the case of internal delete, if quantity becomes 0)
      */
+
     private static int nextCartId = 1;
 
     private final int cartId;
 
-    private List<CartItem> cartItems;
+    private final List<CartItem> cartItems;
 
-    public Cart()
+    public Cart() {
+        this.cartId = nextCartId++;
+        this.cartItems = new ArrayList<>();
+    }
 
-    private CartItem getCartItem(MenuItem menuItem)
+    private CartItem getCartItem(MenuItem menuItem) {
 
-    public boolean addItem(MenuItem menuItem)
+        if (menuItem == null) {
+            return null;
+        }
 
-    public boolean addItem(MenuItem menuItem, int quantity)
+        for (CartItem item : this.cartItems) {
 
-    public boolean increaseQuantity(MenuItem menuItem)
+            if (item.getMenuItem().getMenuItemId()
+                    == menuItem.getMenuItemId()) {
+                return item;
+            }
 
-    public boolean increaseQuantity(MenuItem menuItem, int quantity)
+        }
 
-    public boolean decreaseQuantity(MenuItem menuItem)
+        return null;
+    }
 
-    public boolean decreaseQuantity(MenuItem menuItem, int quantity)
+    public boolean addItem(MenuItem menuItem) {
 
-    public boolean removeItem(MenuItem menuItem)
+        if (menuItem == null) {
+            return false;
+        }
 
-    public double calculateTotal()
+        CartItem cartItem = getCartItem(menuItem);
 
-    public void clear()
+        if (cartItem == null) {
+            this.cartItems.add(new CartItem(menuItem, 1));
+        } else {
+            cartItem.increaseQuantity();
+        }
 
-    public List<CartItem> getCartItems()
+        return true;
+    }
 
-    public int getCartId()
+    public boolean addItem(MenuItem menuItem, int quantity) {
+
+        if (menuItem == null || quantity <= 0) {
+            return false;
+        }
+
+        CartItem cartItem = getCartItem(menuItem);
+
+        if (cartItem == null) {
+            this.cartItems.add(new CartItem(menuItem, quantity));
+        } else {
+            cartItem.increaseQuantity(quantity);
+        }
+
+        return true;
+    }
+
+    public boolean increaseQuantity(MenuItem menuItem) {
+
+        if (menuItem == null) {
+            return false;
+        }
+
+        CartItem cartItem = getCartItem(menuItem);
+
+        if (cartItem == null) {
+            return false;
+        }
+
+        cartItem.increaseQuantity();
+        return true;
+    }
+
+    public boolean increaseQuantity(MenuItem menuItem, int quantity) {
+
+        if (menuItem == null || quantity <= 0) {
+            return false;
+        }
+
+        CartItem cartItem = getCartItem(menuItem);
+
+        if (cartItem == null) {
+            return false;
+        }
+
+        cartItem.increaseQuantity(quantity);
+        return true;
+    }
+
+    public boolean decreaseQuantity(MenuItem menuItem) {
+
+        if (menuItem == null) {
+            return false;
+        }
+
+        CartItem cartItem = getCartItem(menuItem);
+
+        if (cartItem == null) {
+            return false;
+        }
+
+        if (!cartItem.decreaseQuantity()) {
+            removeItem(menuItem);
+        }
+
+        return true;
+    }
+
+    public boolean decreaseQuantity(MenuItem menuItem, int quantity) {
+
+        if (menuItem == null || quantity <= 0) {
+            return false;
+        }
+
+        CartItem cartItem = getCartItem(menuItem);
+
+        if (cartItem == null) {
+            return false;
+        }
+
+        if (!cartItem.decreaseQuantity(quantity)) {
+            removeItem(menuItem);
+        }
+
+        return true;
+    }
+
+    public boolean removeItem(MenuItem menuItem) {
+
+        if (menuItem == null) {
+            return false;
+        }
+
+        CartItem cartItem = getCartItem(menuItem);
+
+        if (cartItem == null) {
+            return false;
+        }
+
+        return this.cartItems.remove(cartItem);
+    }
+
+    public double calculateTotal() {
+
+        double total = 0;
+
+        for (CartItem item : this.cartItems) {
+            total += item.getQuantity() * item.getMenuItem().getPrice();
+        }
+
+        return total;
+    }
+
+    public void clear() {
+        this.cartItems.clear();
+    }
+
+    public List<CartItem> getCartItems() {
+        return new ArrayList<>(this.cartItems);
+    }
+
+    public int getCartId() {
+        return cartId;
+    }
 
     @Override
-    public String toString()
+    public String toString() {
+
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", totalItems=" + cartItems.size() +
+                ", totalPrice=" + calculateTotal() +
+                ", cartItems=" + cartItems +
+                '}';
+    }
 }
