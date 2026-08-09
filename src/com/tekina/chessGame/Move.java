@@ -31,26 +31,52 @@ public class Move {
             Position toPosition,
             Piece capturedPiece,
             Piece promotedPiece) {
-        // validation + initialization later
+
+        if (movedPiece == null
+                || fromPosition == null
+                || toPosition == null) {
+
+            throw new IllegalArgumentException(
+                    "Moved piece and positions cannot be null"
+            );
+        }
+
+        this.movedPiece = movedPiece;
+        this.fromPosition = fromPosition;
+        this.toPosition = toPosition;
+        this.capturedPiece = capturedPiece;
+        this.promotedPiece = promotedPiece;
     }
 
     public Piece getMovedPiece() {
-        return null;
+        return this.movedPiece;
     }
 
     public Position getFromPosition() {
-        return null;
+        return this.fromPosition;
     }
 
     public Position getToPosition() {
-        return null;
+        return this.toPosition;
     }
 
     public Piece getCapturedPiece() {
-        return null;
+        return this.capturedPiece;
     }
 
     public Piece getPromotedPiece() {
-        return null;
+        return this.promotedPiece;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Move{" +
+                "movedPiece=" + movedPiece +
+                ", fromPosition=" + fromPosition +
+                ", toPosition=" + toPosition +
+                ", capturedPiece=" + capturedPiece +
+                ", promotedPiece=" + promotedPiece +
+                '}';
     }
 }

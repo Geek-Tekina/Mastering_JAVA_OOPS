@@ -46,4 +46,13 @@ public class Square {
     void removePiece() {
         this.piece = null;
     }
+
+    @Override
+    public String toString() {
+
+        return "Square{" +
+                "position=" + position +
+                ", piece=" + piece +
+                '}';
+    }
 }

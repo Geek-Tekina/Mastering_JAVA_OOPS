@@ -54,4 +54,15 @@ public abstract class Piece {
     void markCaptured(){
         this.isCaptured = true;
     }                  // Board-controlled mutation
+
+    @Override
+    public String toString() {
+
+        return "Piece{" +
+                "color=" + color +
+                ", pieceType=" + pieceType +
+                ", currentPosition=" + currentPosition +
+                ", isCaptured=" + isCaptured +
+                '}';
+    }
 }

@@ -1,7 +1,5 @@
 package com.tekina.chessGame;
 
-import java.awt.*;
-
 public class Player {
 
     // Generated:
@@ -14,28 +12,67 @@ public class Player {
     // None
 
     // Mutable:
-    // None
+    // name
 
     // Immutable:
-    // playerId, name, color
+    // playerId, color
 
-    private final String playerId;
-    private final String name;
+    private static int idGenerator = 1;
+
+    private final int playerId;
     private final Color color;
 
-    public Player(String playerId, String name, Color color) {
-        // initialization later
+    private String name;
+
+    public Player(String name, Color color) {
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Player name cannot be empty"
+            );
+        }
+
+        if (color == null) {
+            throw new IllegalArgumentException(
+                    "Player color cannot be null"
+            );
+        }
+
+        this.playerId = idGenerator++;
+        this.name = name;
+        this.color = color;
     }
 
-    public String getPlayerId() {
-        return null;
+    public int getPlayerId() {
+        return this.playerId;
     }
 
     public String getName() {
-        return null;
+        return this.name;
     }
 
     public Color getColor() {
-        return null;
+        return this.color;
+    }
+
+    public void setName(String name) {
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Player name cannot be empty"
+            );
+        }
+
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Player{" +
+                "playerId=" + playerId +
+                ", name='" + name + '\'' +
+                ", color=" + color +
+                '}';
     }
 }
