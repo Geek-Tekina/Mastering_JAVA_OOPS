@@ -32,10 +32,14 @@ public class IphoneStockObservable implements ItemStockObservable {
 
     @Override
     public void setItemStockCount(int newStockAdded) {
-        if(this.iphoneStock == 0){
+
+        boolean wasOutOfStock = this.iphoneStock == 0;
+
+        this.iphoneStock += newStockAdded;
+
+        if(wasOutOfStock && this.iphoneStock > 0){
             notifySubscribers();
         }
-        this.iphoneStock += newStockAdded;
     }
 
     @Override
